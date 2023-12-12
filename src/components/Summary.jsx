@@ -44,10 +44,10 @@ export default function Summary({ userAnswers }) {
           }
 
           return (
-            <li key={answer}>
+            <li key={index}>
               <h3>{index + 1}</h3>
               <p className="question">{QUESTIONS[index].text}</p>
-              <p className={cssClass}>{answer.text}</p>
+              <p className={cssClass}>{answer != null ? answer : 'Skipped'}</p>
             </li>
           );
         })}

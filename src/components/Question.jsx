@@ -16,22 +16,22 @@ export default function Question({ index, onSelectAnswer, onSkipAnswer }) {
     timer = 1000;
   }
   if (answer.isCorrect !== null) {
-    timer = 2000;
+    timer = 100000;
   }
-  function handleSelectAnswer(answer) {
+
+  function handleSelectAnswer(userAnswer) {
     setAnswer({
-      selectedAnswer: answer,
+      selectedAnswer: userAnswer,
       isCorrect: null,
     });
-
     setTimeout(() => {
       setAnswer({
-        selectedAnswer: answer,
-        isCorrect: QUESTIONS[index].answers[0] === answer,
+        selectedAnswer: userAnswer,
+        isCorrect: QUESTIONS[index].answers[0] === userAnswer,
       });
       setTimeout(() => {
-        onSelectAnswer(answer);
-      }, 2000);
+        onSelectAnswer(userAnswer);
+      }, 100000);
     }, 1000);
   }
 
@@ -45,7 +45,12 @@ export default function Question({ index, onSelectAnswer, onSkipAnswer }) {
 
   return (
     <div id="question">
-      <QuestionTimer key={timer} timeout={timer} onTimeout={answer.selectedAnswer === '' ? onSkipAnswer : null} mode={answerState} />
+      <QuestionTimer
+        key={timer}
+        timeout={timer}
+        onTimeout={answer.selectedAnswer === "" ? onSkipAnswer : null}
+        mode={answerState}
+      />
       <h2>{QUESTIONS[index].text}</h2>
       <Answers
         answers={QUESTIONS[index].answers}

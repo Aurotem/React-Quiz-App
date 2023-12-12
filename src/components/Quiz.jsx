@@ -4,6 +4,7 @@ import QUESTIONS from "../questions";
 import Question from "./Question";
 import Summary from "./Summary";
 export default function Quiz() {
+
   const [userAnswers, setUserAnswers] = useState([]);
   const activeQuestionIndex = userAnswers.length;
 
@@ -13,7 +14,7 @@ export default function Quiz() {
     selectedAnswer
   ) {
     setUserAnswers((prevState) => [...prevState, selectedAnswer]);
-    console.log(userAnswers);
+
   },
   []);
 
@@ -23,7 +24,7 @@ export default function Quiz() {
   );
 
   if (quizIsComplete) {
-    return <Summary userAnswers={userAnswers} />;
+    return <Summary userAnswers={userAnswers}/>;
   }
 
   return (
